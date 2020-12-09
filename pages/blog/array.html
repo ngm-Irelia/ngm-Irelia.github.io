@@ -64,18 +64,53 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">Array</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					Array.map()   返回新的数组，并没有改变原来的数组
+
+					Array.forEach()    没有返回值，直接改变原数组
+
+					Array.filter()   将满足条件的元素作为一个新的数组返回
+
+					Array.some()  存在元素满足条件，返回true，若所有元素都不满足条件，返回false
+
+					Array.reduce()
+
+					Array.push()  在数组的后面添加新加元素，此方法改变了数组的长度
+
+					Array.pop()    在数组后面删除最后一个元素，并返回 删除项
+
+					Array.shift()  在数组后面删除第一个元素，并返回 删除项
+
+					Array.unshift()  将一个或多个元素添加到数组的开头，并返回新数组的长度
+
+					Array.isArray()   判断一个对象是不是数组，返回的是布尔值
+
+					Array.concat()  可以将多个数组拼接成一个数组
+
+					Array.toString()  将数组转化为字符串
+
+					Array.join()  将数组转化为字符串
+
+					Array.splice(开始位置， 删除的个数，元素)    万能方法，可以实现增删改：
+
+					let arr = [1, 2, 3, 4, 5];
+
+					let arr1 = arr.splice(2, 0 'haha') //新增一个元素
+
+					let arr2 = arr.splice(2, 3) //删除三个元素
+
+					let arr1 = arr.splice(2, 1 'haha') //替换一个元素
+					includes()  判断一个数组是否包含一个指定的值。
+
+					reverse()   反转数组的元素顺序。
+
+					slice(开始位置, 结束位置) 选取数组的的一部分，并返回一个新数组。
+
+					indexOf() 方法可返回数组中某个指定的元素位置。
 
 				</div>
 				<footer>

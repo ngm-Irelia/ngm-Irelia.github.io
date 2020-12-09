@@ -64,18 +64,87 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt"> </h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					---------- 遍历数组-----------
+
+					循环有多种方式； 遍历数组可以有： for循环，map，forEach, filter，some, every等
+
+					for...in 遍历数组的例子：
+
+					Array.prototype.aa=function(){
+					console.log(this.length);
+					}
+					let myArray=[1,2,4,5,6,7];
+					myArray.name="mya";
+					for (let index in myArray) {
+					console.log(index +" -> "+ myArray[index]);
+					}
+					 
+
+					for...in 遍历数组的缺陷
+					1. index索引是字符串，需要转化后才能计算
+					2.遍历时，会同时遍历数组的所有可枚举属性，原型。
+
+					所以，不要使用 for...in 遍历数组 , 更适合用来遍历对象
+					所以，应该使用 for...of 遍历数组，遍历的只是数组内的元素
+
+					for (let value of myArray) {
+					console.log(value);
+					}
+					---------- 遍历对象-----------
+
+					Object.prototype.fun1=function(){
+					console.log(this);
+					}
+
+					let jsonstr = {
+					aa:"111",
+					bb:"222",
+					cc:"333",
+					dd:"444"
+					}
+
+					jsonstr.fun2= function(){
+					console.log("get")
+					}
+
+					for (let index in jsonstr ) {
+					console.log(index +" -> "+ jsonstr[index]);
+					}
+
+					//这么写，hasOwnPropery做判断
+					for (let index in jsonstr ) {
+					if(jsonstr.hasOwnProperty(index)){
+					console.log(index +" -> "+ jsonstr[index]);
+					}
+
+					}
+
+					for...in 遍历对象，也会遍历到其原型和方法，需要hasOwnPropery() 做判断：某属性是否是该对象的实例属性
+
+					根据上面代码。直接在这总结： for...in 遍历对象，会把橙色的 fun1 和 fun2 都遍历出来。  通过hasOwnPropery() 做判断：可以去掉fun1 
+
+
+
+					------------------------  for...of --------------------------------------
+
+					for...of遍历数组很好用！！！ 不会遍历到原型和方法
+
+					for (let value of myArray) {
+					console.log(value);
+					}
+					for...of 用于遍历map，也非常好用，同时用到变量的解构赋值
+
+					for (let [key, value] of map) {
+					console.log(key + " is " + value);
+					}
+
+
+
 
 				</div>
 				<footer>

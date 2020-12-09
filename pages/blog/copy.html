@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">深拷贝-浅拷贝</h2>
+					<p></p>
+				</header>
+				<div>
+
+					例子：
+					let arrA = [1,2,3];
+					let arrB = arrA;
+					arrB[0]=2;
+					console.log(arrA); // [2,2,3]
+					console.log(arrB); // [2,2,3]
+					结果是arrA和arrB的值都发生了改变。
+					因为： 引用类型的名存在栈内存中，而值存在堆内存中，所以会出现这种情况。
+					基本类型就不会又问题，因为数据存在栈内存中；
+					五种基本类型是：number string boolean null undefined
+					 
+					引用类型 深拷贝的方式：
+					1. 递归复制所有属性，所有层的属性
+					function deal(arr){
+					let newArr = Array.isArray(arr) ? [] : {};
+					if(arr & typeof arr === "object"){
+					for(var key in arr){
+					if(arr[key] && typeof arr[key] === "object"){
+					newArr[key] = deal( arr[key] );
+					}else{
+					newArr[key] = arr[key] ;
+					}
+					}
+					}
+					return newArr;
+					}
+					 
+					为了避免相互引用的对象导致死循环的情况，则应该在遍历的时候判断是否相互引用对象，如果是则退出循环。
+					改进版代码如下：
+					function deepClone(initalObj, finalObj) {
+					var obj = finalObj || {};
+					for (var i in initalObj) {
+					var prop = initalObj[i]; // 避免相互引用对象导致死循环
+					//如initalObj.a = initalObj的情况
+					if(prop === obj) {
+					continue;
+					}
+					if (typeof prop === 'object') {
+					obj[i] = (prop.constructor === Array) ? [] : {};
+					arguments.callee(prop, obj[i]);
+					} else {
+					obj[i] = prop;
+					}
+					}
+					return obj;
+					}
+					var str = {};
+					var obj = { a: {a: "hello", b: 21} };
+					deepClone(obj, str);
+					console.log(str.a);
+					 
+					********************
+					jQuery 提供了 slice(); 仅仅只能深拷贝 第一层， 第二层的还是不可以
+					 
+					2. JSON对象的parse和stringify
+					function deal(obj){
+					let objStr = JSON.stringify(obj);
+					let newObj = JSON.parse(objStr);
+					return newObj;
+					}
+					 
+					3.JQuery的extend方法。
+					$.extend( [deep ], target, object1 [, objectN ] )
+					deep表示是否深拷贝，为true为深拷贝，为false，则为浅拷贝
+					target Object类型 目标对象，其他对象的成员属性将被附加到该对象上。
+					object1  objectN可选。 Object类型 第一个以及第N个被合并的对象。
+					let a=[0,1,[2,3],4], b=$.extend(true,[],a);
+					a[0]=1;
+					a[2][0]=1;
+					console.log(a,b);
+					 
+					4、使用Object.create()方法 这个未测试，是否多层 还是深拷贝
+					直接使用var newObj = Object.create(oldObj)，可以达到深拷贝的效果。
+					 
+					function deepClone(initalObj, finalObj) {
+					var obj = finalObj || {};
+					for (var i in initalObj) {
+					var prop = initalObj[i]; // 避免相互引用对象导致死循环
+					//如initalObj.a = initalObj的情况
+					if(prop === obj) { continue; }
+					if (typeof prop === 'object') {
+					obj[i] = (prop.constructor === Array) ? [] : Object.create(prop);
+					} else {
+					obj[i] = prop;
+					}
+					}
+					return obj;
+					ß}
+
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -64,18 +64,80 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">node</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					assert
+					async_hooks
+					Buffer
+					child_process
+					cluster
+					console
+					crypto
+					debugger
+					dgram
+					dns
+					domain
+					Error
+					events
+					fs                            文件系统
+					global                    全局变量
+					http                        HTTP
+					http2
+					https
+					inspector
+					module                 模块
+					net
+					os
+					path                       路径
+					perf_hooks
+					process                 进程
+					punycode
+					querystring
+					readline
+					repl
+					stream
+					string_decoder
+					timer
+					tls
+					trace_events
+					tty
+					url                         URL
+					util
+					v8
+					vm
+					worker_threads
+					zlib
+
+
+					-----------------
+
+					常用的对象
+					global: Nodejs环境下的全局对象
+					global.console.xxx   这个和js环境下相同
+
+					process：代表当前Nodejs进程，通过process对象可以拿到许多有用信息
+
+					process.version
+					process.platform
+					process.arch
+					process.cwd(); //返回当前工作目录
+					process.chdir('/private/tmp'); // 切换当前工作目录
+					process.nextTick(fun) //在下一次事件响应中执行代码
+					判断是javascript运行环境，还是nodejs运行环境
+
+					if(typeof(window) === 'undefined'){
+					// nodejs 环境
+					}else{
+					// javascript 环境
+					}
+
+					-----------------
+
+
+					
 
 				</div>
 				<footer>

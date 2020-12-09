@@ -64,18 +64,58 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">浏览器工作原理</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					浏览器主要组成部分：7个
+
+					用户界面， 浏览器引擎， 渲染引擎，网络 ， UI后端， js解释器， 数据存储
+
+					渲染引擎的流程：
+
+					从资源下载 到 最终页面展示，依次经过了 Loader（装载）、Parser（分析）、Layout（布局）、Paint（绘制） 模块
+
+					html ---（html parser解析器）------> 生成DOM树
+					css --- （css parser解析器）     ------> 生成样式规则
+					DOM树 + 样式规则                    ------> 生成 Render Tree
+					然后 paint 渲染                           ------> 生成页面
+
+
+
+					缓存
+
+					网页解析
+
+					重绘
+
+					display: none/block，会引起回流，从而引起重绘，性能较差
+
+					visibility: visibile/hidden，只引起重绘，但由于没有成为一个独立的渲染层，会引起整个页面（或当前渲染层）的重绘，性能较好
+
+					opacity: 0/1，opacity小于1时，会产生render layer。所以opacity在0、1的变化中，引起了render
+					layer的生成和销毁，因此，也会引起回流，从而引起重绘，性能较差。如果opacity: 0/0.9，则只会引起重绘
+
+					如果对一个元素使用硬件加速渲染，如具有CSS 3D属性，则不会进行重绘和回流。但如果使用硬件渲染的元素过多，会造成GPU的传输压力
+
+
+
+					【性能优化】
+
+					下面列举一些减少回流次数的方法
+
+					1、不要一条一条地修改DOM样式，而是修改className或者修改style.cssText
+
+					2、在内存中多次操作节点，完成后再添加到文档中去
+
+					3、对于一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示
+
+					4、在需要经常获取那些引起浏览器回流的属性值时，要缓存到变量中
+
+					5、不要使用table布局，因为一个小改动可能会造成整个table重新布局。而且table渲染通常要3倍于同等元素时间
+
+					将需要多次重绘的元素独立为render layer渲染层，如设置absolute，可以减少重绘范围；对于一些进行动画的元素，可以进行硬件渲染，从而避免重绘和回流
 
 				</div>
 				<footer>

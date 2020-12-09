@@ -64,18 +64,47 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">HTTP服务器</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					http模块提供了 request 和 response 对象
+
+					request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；
+					response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。
+
+					var http = require('http');
+
+					// 创建http server，并传入回调函数:
+					var server = http.createServer(function (request, response) {
+					// 回调函数接收request和response对象,
+					// 获得HTTP请求的method和url:
+					console.log(request.method + ': ' + request.url);
+					// 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+					response.writeHead(200, {'Content-Type': 'text/html'});
+					// 将HTTP响应的HTML内容写入response:
+					response.end('<h1>Hello world!</h1>');
+					});
+
+					// 让服务器监听8080端口:
+					server.listen(8080);
+					文件服务器
+					用url模块解析URL。 使用parse()方法将url字符串解析为url对象
+
+					var url = require('url');
+					url.parse('http://149.129.93.25:9525/to/file?query=string#hash');
+					path模块
+					可以处理本地文件目录。方便构建目录
+
+					var path = require('path');
+
+					// 解析当前目录:
+					var workDir = path.resolve('.'); // '/build/public'
+
+					// 组合完整的文件路径:当前目录+'image'+'circle.png':
+					var filePath = path.join(workDir, 'image', 'circle.png');
+					// '/build/public/image/circle.png'
 
 				</div>
 				<footer>

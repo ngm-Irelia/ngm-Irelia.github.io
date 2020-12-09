@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">html5</h2>
+					<p></p>
+				</header>
+				<div>
+
+					html5 新增小功能：
+
+					dom内容编辑： contenteditable = true;
+
+					语音输入：  
+					<!-- <input type="text" x-webkit-speech /> -->
+
+
+					audio。音频
+					video。视频
+
+					元素属性：
+
+					controls:  显示隐藏用户控制界面
+					autoplay：是否自动播放
+					loop ： 是否循环播放
+					currentTime 开始播放到现在所用时间
+					duration： 媒体总时间（只读）
+					paused.  媒体是否暂停（只读）
+					ended。媒体是否播放完毕（只读）
+					currentSrc 媒体地址（只读）
+					volume： 0.0 - 1.0 的音量相对值
+					muted   是否静音
+					autobuffer  是否缓冲加载
+
+					play()  媒体播放
+					pause()。媒体暂停
+					load()。 重新加载
+					还有很多事件！！！ 。。。。
+
+
+
+					额外的特性：
+					poster： 视频预览的图片（这个，，，哈哈哈
+					width, height 视频的尺寸
+					videoWidth, videoHeight 视频实际尺寸（只读）
+
+					source 标签: 如果格式不支持，会接着执行下一个
+
+
+
+					<audio controls src="./aa/aa.mp3"> </audio>
+
+					<video controls src="./bb/bb.mp4"> </video>
+
+					<source src="./bb/bb.avi">
+					</source>.
+					<source src="./bb/mp4">
+					</source>
+
+
+					实现音频标签： 类似360网站上：
+					实现原理就是，点击（悬停）对应标签，修改audio播放对应音频。
+					http://s8.qhimg.com/share/audio/piano1/a4.mp3
+
+
+
+					canvas结合音视频：视频播放，canvas也呈现一份视频～界面效果随意定
+
+					自定义播放器：  查看Components.js 里面
+
+
+					------------------
+
+
+					地理位置对象：
+
+					navigator.geolocation
+
+					单次定位请求：
+
+
+
+					navigator.geolocation.getCurrentPosition(function(position){
+
+
+					-- 经度 position.coords.longitude
+					-- 维度 position.coords.latitude
+					-- 准确度 position.coords.accuracy
+					--海拔 position.coords.altitude
+					-- 海拔准确度 position.coords.altitudeAcuracy
+					-- 行进方向 position.coords.heading
+					-- 地面速度 position.coords.speed
+					-- 时间戳 new Date(position.timestamp)
+
+
+
+
+					})
+					window.addEventListener('storage',function(){
+					//localstorage 改变时候，其他页面触发
+					})
+
+
+					------------------
+
+					新的 选择器
+					document.querySelector("#div1");   //只获取一个元素
+
+					document.querySelectorAll(".show"); // 获取到元素数组
+
+					classList 操作class列表属性：
+
+					document.classList.add("class1");
+					document.classlist.remove("class2")
+					docunment.classlist.toggle("class1")  切换class（删除和添加 交替
+
+
+
+					2 。 json新方法   parse  stringify
+					3. data自定义数据
+					data-name     通过dom.dataset.name 获取
+
+					4.延迟加载js
+					defer  延迟加载，按顺序进行
+					async  异步加载， 加载完就触发，无序
+
+					5.历史管理
+					触发历史管理的方式： 1.跳转页面。 2. hash值变化  3. pushState
+
+					6. 拖放：
+					dragable="true"  运行拖拽
+					当前拖拽元素上的事件：
+					dragstart   拖拽前触发
+					drag           拖拽过程触发  连续触发
+					dragend     拖拽结束触发
+					目标元素 事件：
+					dragenter   进入目标元素触发
+					dragover   在目标上的时候，连续触发
+					dragleave   离开目标元素时触发
+					drop  在目标元素上 释放鼠标触发
+
+					拖放新增属性： 
+					ev.dataTransfer 对象
+					setData("name","hello")
+					getData("name")
+					setDragImage(对象,x,y)   更改拖拽时候的阴影
+
+					拖拽外部文件：
+					ev.dataTransfer.files    获取外部拖拽的文件列表
+
+					FileReader   读取文件
+
+					let files = ev.dataTransfer.files;
+					var fr  = new FileReader():
+					fr.readAsDataURL(files[0]);
+					fr.onload = function(){
+					let oli = document.createElement('li');
+					let oimg = document.createElement('img');
+					oimg.src = this.result;
+					oli.appendChild(oimg);
+					oul.appendChild(oli);
+					}
+
+
+					------------------
+
+
+					datalist   很有用！！
+
+					dialog
+
+					address 定义作者信息
+
+					mark 标记
+
+					progress  进度条
+
+					section     article   aside
+
+					表单控件：
+
+					type="email"
+
+					type = "tel"
+
+					type = "url"
+
+					type="search"
+
+					type = "range" step="2" min="0" max="10" value="2"   数值滑块
+
+					type = "number"    数字选择
+
+					type="color"   颜色选择器
+
+					type="datetime"  显示完整日期   type="time" 时间，不含时区
+
+					type="date"   日期控件 年月日
+
+					type="week"  周显示器
+
+					type="month" 月选择器
+
+					placeholder  提示信息
+
+					autocomplete 自动补全提示 = "off" 关闭
+
+					required  此选项必填
+
+					Pattern 正则验证
+
+					Formaction  在 submit里定义提交地址
+
+
+
+					表单验证是使用 validity 对象里面的属性 判断的
+
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

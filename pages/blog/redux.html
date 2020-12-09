@@ -64,18 +64,25 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">redux</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					为什么要用redux?
+					当项目变得越来越大,每个组件都有自己的state的话,数据传递,一个组件数据变化后,可能引起另一个组件的变化.代码会很复杂,不方便理解和维护.
+
+					什么是redux?
+					redux的核心概念: redux工作原理如下:
+					1. 首先整个项目有一个 store ,存放所有数据,
+					2. 某个组件通过this.state = store.getState(); 使用store中的数据; 要想修改 store 中的内容, 必须通过 action 来描述自己想要进行的操作;然后通过
+					store.dispatch(action); 把任务分给 reducer
+					3. reducer 只是一个接收 state 和 action，并返回新的 state 的函数。根据不同的action,进行相应的数据操作
+
+					三大原则
+					1. 单一数据源 只有唯一一个store
+					2. State 是只读的 唯一改变 state 的方法就是触发 action，action 是一个用于描述已发生事件的普通对象。
+					3. 使用纯函数来执行修改 需要编写 reducers。
 
 				</div>
 				<footer>

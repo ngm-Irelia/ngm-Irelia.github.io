@@ -64,18 +64,78 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">跨域</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					什么情况下会发生跨域：
+					1. 浏览器限制；
+					2. 协议，域名和端口，有一个不相同
+					3. 是XHR请求
+					同时满足上面三个情况，才会发生 跨域 问题
+
+					解决办法：
+					1. 禁止浏览器的限制。 --- 基本不会使用
+					2.jsonp使用 
+					3. 服务器修改代码（支持跨域） ， 调用方修改代码，使用代理（隐藏跨域）
+
+					jsonp的弊端：
+					1.需要服务器端支持，修改代码。
+					2. 只支持Get请求。
+					3.发送的不是XHR请求
+
+					简单请求 和 非简单请求： 
+					简单请求：
+					方法为：GET , HEAD ,POST
+					请求头header中：
+					a.无自定义头
+					b.Content-Type为这几种：
+					text/plain   multipart/form-data   application/x-www-form-urlencoded
+					为简单请求。
+
+					非简单请求： put ， delete 方法的ajax请求
+					发送json格式的ajax请求
+					带自定义头的ajax请求
+
+
+
+					后端设置的请求头有：
+					response.addHeader("Access-Control-Allow-Origin", "*");  // 允许跨域的ip 域名
+					response.addHeader("Access-Control-Allow-Methods","*"); //允许请求方法GET等
+					response.addHeader("Access-Control-Allow-Headers","Content-Type");
+					response.addHeader("Access-Control-Max-Age","3600"); //预警命令options缓存时间
+
+
+
+					带cookie的跨域 
+					ajax请求，带上cookie：
+					xhrFields:{
+					    withCredentials:true
+					}
+
+					response.addHeader("Access-Control-Allow-Origin", "*"); 这个不能满足带cookie的跨域请求！！ 必须完成匹配。。
+					需要做下判断，支持不同域名跨域
+					还需添加如下字段：
+					response.addHeader("Access-Control-Allow-Credentials", "true");
+
+					带自定义头的跨域
+					后端设置Access-Control-Allow-Headers 这个字段
+
+					被调用方解决跨域的方式：
+					通过nginx解决跨域： 。。。。
+					从这个了解到可以转换域名呀，以前遇到的离线地图的问题，看下能不能通过nginx来解决
+
+					sping框架解决跨域
+					仅仅需要设置一个注解 ；  @CrossOrigin
+
+					调用方解决跨域-- 隐藏跨域
+
+					反向代理：
+
+
+
+					node.js 使用  http-proxy-middleware 代理
 
 				</div>
 				<footer>

@@ -64,18 +64,33 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">ajax</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					XMLHttpRequest所有流程：
+
+					let xhr = new XMLHttpRequest();
+					xhr.open('get','url...',true);
+					xhr.send();
+					xhr.onreadystatechange = function(){
+
+					if(xhr.readyState === 4){
+					alert(xhr.responseText);
+					}
+
+					}
+					xhr.open(请求方式， 请求url， 是否异步);
+
+					xhr.readyState 请求状态值：
+					0 初始化，还没有调用open()方法
+					1 载入  已经调用了send() 方法，正在发送请求
+					2. 载入完成，send()方法完成，已收到所有响应请求
+					3 正在解析响应内容
+					4 完成，解析完成，可以在客户端调用
+
+
 
 				</div>
 				<footer>

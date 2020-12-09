@@ -64,18 +64,22 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">view</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					表现和数据分离理解?
+					看到这个问题，首先想到的是，呀，不就是css，html，js分离嘛，那个是表现和结构分离。 但是这个是表现和数据分离。
+					其实就是mvc和mvvm（后面着重了解下MVVM好了）
+					我们直接说表现与数据分离，这个是完全再js中实现的，就和js中实现mvc似得。model只存放数据（ajax请求获取数据）；view中使用选择器，操作页面的dom。
+					二者没有联系，通过controller进行沟通。
+					这样的优点是：如果以后我们需要改变页面的结构，嗯...我们只需要修改view部分的代码就好了，数据根本不需要变。
+					如果获取数据的方式路径等变了，好吧，我们可以只修改model部分就好了，至于是哪里使用，那个dom我们都不需要知道；这样写很适合项目很大，代码量多的情况，便于维护，也容易阅读。是不是感觉还挺不错的？
+
+					emmmmm.这个嘛，实际使用的时候，为了图方便，我都是仅仅是把model和view分离开来了，并没有通过controller进行两者间的交互... 后续学习中再理解这个地方应该如何处理比较好。
+
+					------------------------------
 
 				</div>
 				<footer>

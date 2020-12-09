@@ -64,18 +64,41 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">前端性能优化</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					图片相关优化
+					1.图片整合 -- 多个图片整合为雪碧图
+					工具：gopng     fis       css-sprites
+
+					2. 图片动态加载sdk
+
+					3. 了解 <picture></picture>元素的使用～～
+
+					播放器
+					video标签 ： 优点：不需要下载额外资源
+
+					1.自己实现播放器ui，很简单～自己写点css，js即可
+
+					2. 视频资源优先加载 通过link放到文件前面
+
+					缓存
+					SessionStorage ， cookie ， openDatabase , LocalStorage , (userData)
+
+					SessionStorage 临时存储，关闭标签，自动回收，不可跨页面交互。大小限制为5M以下
+
+					Cookie  4k 请求会带着cookie给服务器
+
+					openDatabase 就是一个数据库。。 没什么是他做不了的
+
+					有个问题就是：他会保存在浏览器的文件夹下，里面的文件是可以被打开的！
+
+
+
+					重点 ： 缓存SDK
+					用处： 1.拉取更新资源。 2.存储拉取的资源。 3.根据版本，置换过期资源
 
 				</div>
 				<footer>

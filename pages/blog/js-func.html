@@ -1,0 +1,250 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">js方法</h2>
+					<p></p>
+				</header>
+				<div>
+
+					Object.defineProperty()   在一个对象上定义一个新属性，或者修改已经存在的属性
+
+					Object.preventExtensions(Person )   禁止一个对象添加新属性并且保留已有属性
+
+					Object.seal(Person)   密封对象，实际上会在一个现有对象上调用object.preventExtensions(...)并把所有现有属性标记为configurable:false;
+					密封之后 不能添加新属性，不能重新配置，删除任何现有属性  , 但是 可以改属性的值
+
+					Object.freeze()   冻结一个对象， 不能添加新属性，不能重新配置，删除属性  , 不能改属性的值
+
+					delete obj.name  删除对象的某个属性
+
+
+
+					Object.defineProperty()的作用就是直接在一个对象上定义一个新属性，或者修改一个已经存在的属性
+
+					Object.defineProperty(obj, prop, desc)
+					obj 需要定义属性的当前对象
+					prop 当前需要定义的属性名
+					desc 属性描述符
+
+
+					javacript 有三种类型的属性
+
+					命名数据属性：拥有一个确定的值的属性。这也是最常见的属性
+					命名访问器属性：通过getter和setter进行读取和赋值的属性
+					内部属性：用双括号包围的属性，这不是它真正的名称，而是抽象的
+
+
+					通过Object.defineProperty()为对象定义属性，有两种形式，且不能混合使用，分别为数据描述符，存取描述符
+
+					数据描述符：  属性如下：
+
+					value :             要设置的值  【特有】
+					writable：      是否可写 【特有】
+					get：               获取属性 给属性提供getter的方法
+					set：               设置属性  给属性提供setter的方法
+					configrable    描述属性是否配置，以及可否删除   false 时，不能删除当前属性
+					enumerable  描述属性是否会出现在for in 或者 Object.keys()的遍历中
+
+					存取描述符 --是由一对 getter、setter 函数功能来描述的属性
+
+
+
+					对象常量
+					结合writable: false 和 configurable: false 就可以创建一个真正的常量属性（不可修改，不可重新定义或者删除）  但是 允许再扩展新的属性
+					禁止扩展
+					如果你想禁止一个对象添加新属性并且保留已有属性，就可以使用Object.preventExtensions(...)
+					let Person = {
+					name:"ngm"
+					}
+					Object.preventExtensions(Person )
+					Person.age = 21; // 报错了！！
+					3.密封
+					Object.seal(Person)会创建一个密封的对象，这个方法实际上会在一个现有对象上调用object.preventExtensions(...)并把所有现有属性标记为configurable:false
+
+					密封之后 不能添加新属性，不能重新配置，删除任何现有属性
+					但是 可以改属性的值
+
+					Object.freeze()   冻结一个对象
+
+
+
+					Object.defineProperties 使用
+
+					Object.defineProperties(obj, {
+					name: {
+					value: '张三',
+					configurable: false,
+					writable: true,
+					enumerable: true
+					},
+					age: {
+					value: 18,
+					configurable: true
+					}
+					})
+
+					--------------------------
+
+					URlSearchParams 用于处理url中的查询字符串
+
+					方法如下：
+
+					append：添加给定的key/value参数
+					delete：删除查询参数
+					get：返回第一个匹配到的值
+					getAll：返回所有的查询参数的值
+					has：判断给定的参数是否存在，存在返回true，否在false
+					set: 为给定的参数设置value，如果给参数不存在则创建并设置值；如果存在则多个相同参数，匹配第一个，删除其他的。
+					sort：按key对所有的参数进行排序，并返回undefined，如果存在相同的key，则保留它们原来的顺序。
+					toString：返回在适合在url中使用的字符串
+
+					entries：返回一个迭代器(iterator)，可以遍历得到值为[key, value]的元素
+					keys：返回一个iterator用于遍历所有的key
+					values：返回一个iterator遍历可得到所有的value值
+
+					兼容性问题：可以使用babel进行转化
+
+					具体的使用见项目使用。
+
+
+					--------------------------
+					获取距离的方法：
+					
+					1  screen
+					screen.width  屏幕的宽度
+					screen.height 屏幕的高度
+
+					2 style
+					dom.style.width
+					dom.style.height
+					必须在行内设置样式，否则获取不到
+
+					3 offset
+					dom.offsetWidth:当前对象的宽度     width+padding+border
+					dom.offsetHeight:当前对象的高度。Height+padding+border
+
+					4 client
+					dom.clientWidth:获取对象可见内容的宽度，不包括滚动条，不包括边框dom.clientHeight:获取对象可见内容的高度，不包括滚动条，不包括边框dom.clientLeft:获取对象的border宽度
+					dom.clientTop:获取对象的border高度
+
+					5 scroll
+					dom.scrollWidth:获取对象的滚动宽度 。
+					dom.scrollHeight: 获取对象的滚动高度。
+					dom.scrollLeft:设置或获取位于对象左边界和对象中目前可见内容的最左端之间的距离(width+padding为一体)
+					dom.scrollTop:设置或获取位于对象最顶端和对象中可见内容的最顶端之间的距离；(height+padding为一体)
+
+
+
+					详细内容 见：http://47.94.8.210:8080/interview/width-height.html
+
+					dom.offsetLeft  外边框到有定位父级的距离
+
+					dom.getBoundingClientRect()  获取元素的 left top bottom right width height
+
+
+
+
+
+					元素的操作：
+
+					dom.insertBefore() 元素内部前面插入一个元素
+
+					append()  元素内部最后面插入一个元素
+
+					dom.lastElementChild  获得元素最后一个子节点
+
+					dom.replaceChild(newNode, oldNode); 替换节点
+
+					dom.cloneNode(boolean); 克隆一个节点   true 克隆元素和元素包含的子孙节点  false 单纯的克隆元素不包含子孙节点
+
+
+
+					--------------------------
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

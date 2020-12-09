@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">JQuery</h2>
+					<p></p>
+				</header>
+				<div>
+
+					jquery.event = {
+
+					global
+					add
+					remove
+					trigger
+					dispatch
+					handlers
+					props
+					fixHooks
+					keyHooks
+					mouseHooks
+					fix
+					special
+					simulate
+
+					}
+
+
+
+					jquery.Event = function(){}
+
+					jquery.Event.prototype = {
+
+					}
+
+
+
+					jquery.fn.extend({
+
+					on
+
+					one
+
+					off
+
+					trigger
+					 
+					triggerHandler
+					 
+					})
+
+
+
+					// 6720 行也有对外的接口
+
+					.click()
+
+					.mouseover()
+
+					jquery.fn.extend({
+
+					hover
+
+					bind
+
+					unbind
+
+					delegate
+
+					undelegate
+
+					})
+
+
+
+					callbacks.add() 回调列表中添加一个回调或回调的集合。
+					callbacks.disable() 禁用回调列表中的回调
+					callbacks.disabled() 确定回调列表是否已被禁用。
+					callbacks.empty() 从列表中删除所有的回调.
+					callbacks.fire() 用给定的参数调用所有的回调
+					callbacks.fired() 访问给定的上下文和参数列表中的所有回调。
+					callbacks.fireWith() 访问给定的上下文和参数列表中的所有回调。
+					callbacks.has() 确定列表中是否提供一个回调
+					callbacks.lock() 锁定当前状态的回调列表。
+					callbacks.locked() 确定回调列表是否已被锁定。
+					callbacks.remove() 从回调列表中的删除一个回调或回调集合。
+
+
+
+					$.Callbacks支持4种字符串参数
+
+					once   函数队列只执行一次
+
+					unique  添加的函数保持唯一，不能重复添加
+
+					stopOnFalse  内部队列里的函数是依次执行的，当某个函数的返回值是false时，停止继续执行剩下的函数
+
+					memory 类似邮箱未读文件，qq未读消息。 fire运行一次后，add函数立即执行
+
+
+
+					发布订阅模式    ；  观察者模式
+
+
+					----------------------------------
+
+					attr()与prop()的区别
+					区别一：attr()会修改标签上的属性(attribute)，也可以给标签增添自定义属性，而prop()只修改dom对象的属性（property）。
+					区别二：修改布尔值属性（例如checked,selected,autofocus）时，attribute如果和property属性不相等，优先使用property。
+					区别三：attr()一般修改自定义属性，prop()一般修改布尔值属性
+
+
+					----------------------------------
+
+					queue() 队列方法：执行顺序的管理
+
+					jQuery.extends({
+						  queue                        入队
+						dequeue                     出队
+						_queueHooks
+						})
+						
+						jQuery.fn.extends({
+						queue
+						dequeue
+						delay
+						clearQueue
+						promise
+						})
+
+
+					----------------------------------
+
+
+					
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

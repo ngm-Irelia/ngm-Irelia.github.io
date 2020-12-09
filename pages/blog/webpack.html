@@ -64,18 +64,122 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">webpack</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					npm init -y
+					npm install webpack webpack-cli --save-dev
+					调整 package.json 文件，以便确保我们安装包是私有的(private)，并且移除 main 入口。这可以防止意外发布你的代码。
+
+					package.json
+
+					+ "private": true,
+					- "main": "index.js",
+					"scripts": {
+					"test": "echo \"Error: no test specified\" && exit 1",
+					+ "build": "webpack"
+					},
+					加载 CSS
+					为了从 JavaScript 模块中 import 一个 CSS 文件，你需要在 module 配置中 安装并添加 style-loader 和 css-loader：
+
+					npm install --save-dev style-loader css-loader
+					module: {
+					rules: [
+					{
+					test: /\.css$/,
+					use: [
+					'style-loader',
+					'css-loader'
+					]
+					}
+					]
+					}
+					加载图片
+					使用 file-loader，将图片混合到 CSS 中：
+
+					npm install --save-dev file-loader
+
+
+					module: {
+					rules: [
+					{
+					test: /\.css$/,
+					use: [
+					'style-loader',
+					'css-loader'
+					]
+					},
+					+ {
+					+ test: /\.(png|svg|jpg|gif)$/,
+					+ use: [
+					+ 'file-loader'
+					+ ]
+					+ }
+					]
+					}
+
+
+					加载字体
+					+ {
+					+ test: /\.(woff|woff2|eot|ttf|otf)$/,
+					+ use: [
+					+ 'file-loader'
+					+ ]
+					+ }
+
+
+					加载数据
+					此外，可以加载的有用资源还有数据，如 JSON 文件，CSV、TSV 和 XML。类似于 NodeJS，JSON 支持实际上是内置的，也就是说 import Data from
+					'./data.json' 默认将正常运行。要导入 CSV、TSV 和 XML，你可以使用 csv-loader 和 xml-loader。让我们处理这三类文件：
+
+					npm install --save-dev csv-loader xml-loader
+					+ {
+					+ test: /\.(csv|tsv)$/,
+					+ use: [
+					+ 'csv-loader'
+					+ ]
+					+ },
+					+ {
+					+ test: /\.xml$/,
+					+ use: [
+					+ 'xml-loader'
+					+ ]
+					+ }
+
+
+
+
+					entry: {
+
+					app:'./src/index.js',
+
+					print:'./src/print.js'
+
+					},
+
+					output: {
+
+					filename:'[name].bundle.js',
+
+					path:path.resolve(__dirname, 'dist')
+
+					},
+
+
+					设定 HtmlWebpackPlugin
+					首先安装插件，并且调整 webpack.config.js 文件：
+
+					npm install --save-dev html-webpack-plugin
+					会自动创建全新的html文件
+
+					清理 /dist 文件夹
+					在每次构建前清理 /dist 文件夹
+
+					clean-webpack-plugin 是一个比较普及的管理插件
+
+					npm install clean-webpack-plugin --save-dev
 
 				</div>
 				<footer>

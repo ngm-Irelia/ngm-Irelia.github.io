@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">Promise</h2>
+					<p></p>
+				</header>
+				<div>
+
+					本文主要应对与实践，体会代码的不同写法，从实践中了解知识点。
+
+					new Promise(function(resolve, reject){
+					if(判断){
+					resolve("true");
+					}else{
+					reject("false");
+					}
+					});
+
+					Promise是一个构造函数，接收一个参数,是函数，其有两个参数，resolve和reject；分别表示 操作执行成功和失败的回调函数；
+					执行成功，resolve会把Promise的状态置为 fullfiled；
+					执行失败，reject 会把Promise的状态置为 rejected；
+
+					Promise主要是解决回调嵌套的问题。    你看~
+					如果我的一个ajax请求，需要上一次ajax请求返回的数据，做参数，这两个请求就必须嵌套的写。好吧，两层还可以接受，但是如果是三层，四层，更多呢？代码会特别不好看，也不容易维护。
+					Promise就可以解决这种问题，通过链式调用的方式（then）来解决。
+
+					先直接来看代码： 实践才更容易理解：
+
+					我们使用setTimeout()代替ajax请求；
+
+					function func(want) {
+					console.log('进行操作');
+
+					return new Promise(function(resolve, reject) {
+					console.log("可进行操作");
+					if(typeof want == 'string') {
+					resolve("true");
+					} else {
+					reject("失败");
+					}
+					})
+					}
+
+					func("aaa").then(function(e){
+					console.log(e); // true
+					}).catch(function(e){
+					console.log(e);
+					})
+					如上代码，then()的参数是一个函数，其实就是 resolve成功后的回调函数，使用链式结构代替了回调函数的嵌套模式、
+					then中函数的参数，就是resolve返回的值"true"，我们就可以通过这个参数，进行数据的传递
+					catch()的参数也是函数，是失败后reject的回调函数
+
+					这个地方，接收回调函数的写法有三种，上面一种是 then().catch() 推荐
+					如下还有两种：
+
+					//第二种
+					func("aaa").then(function(e) {
+					console.log('e');
+					e();
+					}).then(null,function(e) {
+					console.log('e');
+					})
+					//第三种
+					func("aaa").then(
+					function(e) { console.log('e');},
+					function(e) { console.log('e'); }
+					})
+					第二种和第三种也很容易理解，then能传两个参数，都是函数， 第一个是resolve的回调函数，第二个是reject的回调函数。
+
+					通过上面所看到的，仅仅一次获取ajax请求数据，promise没啥好看的啊。
+					前面说到，promise主要是通过链式操作来解决回调函数的层层嵌套问题，那我们就来看下多次ajax请求，如何用promise来处理
+
+					var find = function(num) {
+					return new Promise(function(resolve, reject) {
+					if (typeof num == 'number') {
+					console.log("如果都立即出现，应该是异步，都在各自运行呢")
+					setTimeout(function(){
+					console.log("运行成功：num=== "+num);
+					resolve(num);
+					},num*500);
+					} else {
+					reject('TypeError');
+					}
+					})
+					}
+
+					find(2).then(function(e){
+					console.log(e);
+					return find(4); // 注意，这里必须要有return
+					}).then(function(e){
+					console.log(e);
+					return find(6); // 注意，这里必须要有return
+					}).then(function(e){
+					console.log(e);
+					})
+					如上，为方便，使用同一个ajax请求，实际可以是不同的ajax；这样写，就比以前多层嵌套美观多了~
+					注意一点，then中继续调用新的请求时，需要使用return  否则，其返回的resolve值我们是无法获取到的，也就是then中第一个行 console 为 undefined， 切记
+
+					输出结果为：
+
+					// 运行成功：num=== 2
+					2
+					// 运行成功：num=== 4
+					4
+					// 运行成功：num=== 6
+					6
+					上面仅仅说了成功，resolve的情况，如果是reject的情况呢？ 我们怎么把它在代码中展示呢？
+					直接上代码：
+
+					find(2).then(function(e){
+					console.log(e);
+					return find(4); // 注意，这里必须要有return
+					}).then(function(e){
+					console.log(e);
+					return find(6); // 注意，这里必须要有return
+					}).then(function(e){
+					console.log(e);
+					}).catch(function(e){
+					console.log(e); // 在这处理异常的情况
+					})
+					为什么要写在最后面，而不是每个请求，都写一个catch，或者是使用then传两个参数呢？
+					因为，我们设定，下次请求，需要使用上次请求返回的数据，如果前面的请求报错了，后面可以不用进行了，直接处理错误就好。
+					还一个原因是，如果使用then(func,func)或者写多个catch，那么第一个请求如果返回reject，之后第二个请求仍会继续执行，但是没有第一次请求的数据，这就是一次无意义的请求而已。
+
+					promise中 all 的用法：
+					 all里面所有异步操作执行完后才执行回调then
+					需求场景：后续操作需要多个ajax请求都请求完成，才能进行的情况，就要用到all
+
+					Promise.all([find(1), find(5), find(10)]).then(function(value) {
+					// 建议在浏览器中看value值
+					//console.log(value);
+					console.log("请求都执行完成");
+					})
+					 promise中race的用法：
+					参数中有一个请求完成，就进行then
+
+					Promise.race([find(1), find(5), find(10)]).then(function(value) {
+					// 建议在浏览器中看value值
+					//console.log(value);
+					console.log("有一个请求完成");
+					})
+
+
+					end~~
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

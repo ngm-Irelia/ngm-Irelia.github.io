@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">linux</h2>
+					<p></p>
+				</header>
+				<div>
+
+					1：  scp -pqr 原服务器文件夹名 用户@127.0.0.1:/opt
+
+					例子： 把jdk1.8转移到新的服务器
+					scp -pqr jdk1.8.0_121 root@172.16.11.212:/opt
+
+					2： pwd 查看路径
+
+					3.   chmod a+x test.sh #给test.sh可执行权限
+
+
+
+
+					快捷键
+					Tab 命令补齐功能
+					Ctrl+C 中断当前的工作指令<常用于无限执行时的强制退出>
+						Ctrl+Insert 控制台下复制
+						Shift+Insert 控制台下粘贴
+						exit 为用户退出
+
+						新建文档
+						pwd 显示当前路径
+						cd /home/xiaoerni   进入xiaoerni目录下<注意cd后的空格>
+							mkdir test 在xiaoerni目录下建test文件夹
+							cd test 进入test目录下
+							touch li.txt  在test目录下新建li.txt文档
+							mv l.txt li.txt  将l.txt重命名为l.txt
+							mv l.txt /home/xiaoerni/li.txt  将在test目录下的l.txt文件移动到xiaoerni目录下并命名为li.txt
+							cd .. 返回上级目录
+							ls -1 展示当前目录下的文件
+							vim li.txt 进去li.txt的编辑页面
+							i 表示开始编辑
+							Esc表示退出编辑状态
+							:wq 表示退出编辑框并保存
+
+							查看当前服务器信息
+							ifconfig -a查看IP地址
+							w 查看当前使用服务器的用户信息以及在干什么
+							who 查看所有登录的用户以及登录时间，和ip
+							whoami 查看当前登录的用户名
+							即~~~显示的详细程度由高到低为：w   who  whoami
+
+							添加服务器的用户和组
+							useradd test1  新建名为test1的用户，并生成对应名的工作组以及home下的文件夹
+							passwd test1 为新建的test1用户修改登陆密码
+							su - test1 从root用户切换到test1用户
+							su 从test1用户切换至root用户
+							usermod -l test2 test1 将test1的用户名改为test2
+							userdel -r test1  删除test1用户以及所建的home下的test1目录
+							groupadd -g 888 group1 创建一个gid为888的组名为group1
+							usermod -g test2 group1 将用户test2加入到group1中 
+							ps新建用户时也可以直接分组
+							useradd -g group1 test2 新建一个group1的test2用户
+							gpasswd -d test2 group1 把test2用户退出group1组
+
+							------------------------
+
+							Linux的档案权限共有9种，即分别是owners/group/others分别各有的rwx（读，写，执行）权限。
+
+
+							变更方式一
+							r的权重值为4
+							w的权重值为2
+							x的权重值为1
+							例如 ower=rwx=4+2+1=7
+
+							变更权限的命令是chmod
+							例如将权限更改为-rwxr-xr--则为：
+							rwx=4+2+1=7
+							r-x=4+1=5
+							r--=4
+							命令为：chmod 754 filename
+
+
+							------------------------
+
+							vim的查找功能: 命令模式下        /查找的字符    n指向下查找，N指向上查找  例如查找“小二妮”       /小二妮
+							vim的全文替换功能：命令模式下   %s/查找的字符/替换的字符/gc     这里的g表示全文 ，c表示询问替换意见
+							去除vim搜索后文档中的高亮     在命令模式下输入    noh
+
+
+							
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

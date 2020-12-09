@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">消息通信</h2>
+					<p></p>
+				</header>
+				<div>
+
+					iframe    window.open   消息传递
+					iframe元素.contentWindow 获取iframe里面页面的window对象；父级操作子级
+					iframe里面：  window.parent  就是外面父级的window     子级操作父级
+					window.open 返回新开页面的window对象！ 可以在原页面进行操作； 父级操作子级
+					window.opener 是 父级的window 子级操作父级
+
+					postMessage :  可以通过这个对象的一个方法 给另一个窗口发送信息
+
+					postMessage("数据","接收数据的页面");
+
+					message :  当窗口接收到postMessage发送过来的数据的时候，触发
+					message.data  发送过来的数据
+					message,origin 发送过来的域
+
+					window.addEventListener('message', function(ev){
+					alert('别的页面内容'+ev.data)
+					})
+
+					学会使用WEBWORKER
+					运行在后台的javascript， 多线程了！！
+
+					const worker = new Worker(_that.countPosNodesUrl);
+
+					worker.postMessage({data:data})
+
+					self.onmessage = function(config){
+					    // 接收postMessage传过来的数据
+					}
+
+
+					ajax请求：  解决跨域需要后台支持， 设置header
+					事件：
+					onreadychange
+					onload   请求完成并且成功
+					onloadend   请求完成，但不一定正确
+					onerror   请求失败
+					onprogress    加载过程
+					ontimeout  加载超时
+
+					ajax 进度事件
+					upload.onprogress 上传
+					FormData 对象
+					ev.total   总量
+					ev.loaded    已发送的量
+
+					ajax 无刷上传
+					let getfile = xxx.files[0];
+
+					let param = new FormData();
+					param.append('file', getfile );
+
+					let xhr = new XMLHttpRequest();
+
+					xhr.onload = function(){
+					//成功后返回
+					}
+
+					let xupload = xhr.upload;
+
+					xupload.progress = function(ev){
+					console.log(ev.total)
+					console.log(ev.loaded)
+					}
+
+					xhr.open("post", 'url ... ', true)
+					xhr.setRequestHeader('X-Request-With', "XMLHttpRequest");
+					xhr.send(param)
+
+
+					websocket  SSE
+					学node时候学习
+
+					HTML5 应用程序缓存
+					<!-- <html manifest="demo.appcache"> -->
+					CACHE MANIFEST - 在此标题下列出的文件将在首次下载后进行缓存
+					NETWORK - 在此标题下列出的文件需要与服务器的连接，且不会被缓存
+					FALLBACK - 在此标题下列出的文件规定当页面无法访问时的回退页面（比如 404 页面）
+
+
+
+
+					html5 新增小功能：
+
+					dom内容编辑： contenteditable = true;
+
+					语音输入：  <!-- <input type="text" x-webkit-speech /> -->
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

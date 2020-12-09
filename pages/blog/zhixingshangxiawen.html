@@ -64,18 +64,46 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">执行上下文，全局存储器相关知识</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					javascript引擎 在 运行javascript代码的时候， 会创建一个 全局执行上下文 和 全局存储器。
+
+					执行上下文，是一个抽象的，表示 javascript运行的环境
+
+
+
+					Javascript引擎创建执行上下文，全局存储器和调用栈。但是一旦你调用一个函数，引擎就会创建一个局部执行上下文。
+
+
+
+
+
+					VO 是什么，？
+
+					变量对象 Variable Object
+
+					是与执行上下文相关的 数据作用域。 用来存储定义在执行上下文的变量，函数声明
+
+					初始化过程：：
+
+					1.函数的形参。  形参为属性名，实参为属性值
+
+					2. 函数声明
+
+					3. 变量声明
+
+					覆盖按顺序，如果新的属性名和以前的重复，不会
+
+
+
+					活动对象  Activation Object 
+
+					（1）只有全局上下文的变量对象允许通过VO的属性名称间接访问；
+
+					（2）在函数执行上下文中，VO是不能直接访问的，此时由激活对象(Activation Object,缩写为AO)扮演VO的角色。
 
 				</div>
 				<footer>

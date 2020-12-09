@@ -1,0 +1,373 @@
+<!DOCTYPE HTML>
+<!--
+	Prologue by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<div id="header">
+
+		<div class="top">
+
+			<!-- Logo -->
+			<div id="logo">
+				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<h1 id="title">Jane Doe</h1>
+				<p>Hyperspace Engineer</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="#top" id="top-link"><span class="icon solid fa-home">Intro</span></a></li>
+					<li><a href="#portfolio" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a>
+					</li>
+					<li><a href="#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+					<li><a href="#contact" id="contact-link"><span class="icon solid fa-envelope">Contact</span></a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+
+		<div class="bottom">
+
+			<!-- Social Icons -->
+			<ul class="icons">
+				<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+				<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+				<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+				<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
+				<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+			</ul>
+
+		</div>
+
+	</div>
+
+	<!-- Main -->
+	<div id="main">
+
+		<!-- Intro -->
+		<section id="top" class="one dark cover">
+			<div class="container">
+
+				<header>
+					<h2 class="alt">class</h2>
+					<p></p>
+				</header>
+				<div>
+
+					class 可以理解为是一个语法糖；
+					语法糖：指的是 添加某种语法，对语言本事没有影响，优点是：方法程序员开发，提高开发效率。
+					下面是例子：
+					注意： A:新增一个toString() 方法，该方法不用加function，后面也不能加逗号
+
+
+
+					class Ngm {
+					constructor(x, y) {
+					this.x = x;
+					this.y = y;
+					}
+
+					toString() {
+					console.log("in ngm tostring...");
+					return '(in return : xy === ' + this.x + ', ' + this.y + ')';
+					}
+					}
+
+					let ngm = new Ngm(1,2);
+					ngm.toString(); //(in return : xy === 1,2)
+
+					B: 类(class)的数据类型是函数，类本身指向构造函数。
+					C: 类的所有方法都定义在类的prototype属性上面。
+
+					class Ngm {
+					// ...
+					}
+
+					typeof Ngm // "function"
+					Ngm ===Ngm.prototype.constructor // true
+					D: 必须使用new 生成类的实例；
+
+					E: 属性表达式  类的属性名可以采用表达式。
+
+					let methodName = 'getMap';
+					let bar = Symbol('bar');
+
+					class Gis {
+					constructor(length) {
+					// ...
+					}
+
+					[methodName]() {
+					// ...
+					}
+					}
+
+					let gis = new Gis();
+					gis.getMap(); // 成功
+					F: Class 表达式。  和函数表达式一样～
+
+					let person = new class {
+					constructor(name) {
+					this.name = name;
+					}
+
+					sayName() {
+					console.log(this.name);
+					}
+					}('张三');
+
+					person.sayName(); // "张三"
+					G:  Generator 方法
+
+					class Foo {
+					constructor(...args) {
+					this.args = args;
+					}
+					* [Symbol.iterator]() {
+					for (let arg of this.args) {
+					yield arg;
+					}
+					}
+					}
+
+					for (let x of new Foo('hello', 'world')) {
+					console.log(x);
+					}
+					// hello
+					// world
+					H: this的指向
+					1）通过在构造函数中绑定this
+					2) 通过箭头函数 => 其实是在构造函数中用箭头函数直接绑定了函数
+
+					I: 静态方法
+
+					类中所有的方法，都会被实例所继承。 但是加上 static 关键字，则不会继承，只能由类来调用，否则出错
+
+					静态方法 可以与 非静态方法 重名
+					父类的静态方法，可以被子类继承
+					静态方法也是可以从super对象上调用的。
+
+					class Foo {
+					static classMethod() {
+					return 'hello';
+					}
+					}
+
+					class Bar extends Foo {
+					static classMethod() {
+					return super.classMethod() + ', too';
+					}
+					}
+
+					Bar.classMethod() // 'hello'
+					//继承后，也还是静态，也还是必须用类调用！！！
+					J: 实例属性的写法：
+					1) 写在构造函数中 constructor     2) 写在类的最顶层
+
+					class Ngm {
+					_count = 0; // 这种写法还不支持呢
+					}
+					let ngm = new Ngm();
+					console.log(ngm._count);
+
+					K: 静态属性
+					static myname="ngm";
+					静态属性只能通过类调用
+
+					L: 私有方法和私有属性
+					es6不提供，只能通过方法模拟
+					1）在命名上作区分，前面加 _
+					2)  将私有方法，移出模块（类）
+					3)  将私有方法名 命名 为 Symbol值
+					4)  新的提案，在方法前面加#号
+
+
+
+					M：new.target 属性
+					class方式，其实用不到这个，仅当普通函数模拟类的时候用到。
+
+					function Person(name) {
+					if (new.target !== undefined) {
+					this.name = name;
+					} else {
+					throw new Error('必须使用 new 命令生成实例');
+					}
+					}
+
+					// 另一种写法
+					function Person(name) {
+					if (new.target === Person) {
+					this.name = name;
+					} else {
+					throw new Error('必须使用 new 命令生成实例');
+					}
+					}
+
+					var person = new Person('张三'); // 正确
+					var notAPerson = Person.call(person, '张三'); // 报错
+
+
+
+					------------------------------
+
+					1. class 通过 extends 关键字实现继承
+					class People {
+					constructor(x,y) {    
+					this.x = x;
+					this.y = y;
+					}
+					toString(){
+					console.log("People tostring...")
+					}
+					}
+					class Ngm extends People {
+					  constructor(x,y,z) {
+					super(x,y);
+					this.z = z;
+					  }
+					toString(){
+					console.log("Ngm ..."+this.z+"-"+super.toString())
+					}
+					}
+					let ngm = new Ngm(1,2,3);
+					ngm.toString();
+					注： A:子类必须在constructor构造函数中调用super方法，否则报错
+					B:子类的this，必须写在super之后，之前会报错。
+					C: 在子类中，通过super 调用父类的方法
+					父类的静态方法 也会被 子类继承
+
+					2.Object.getPrototypeOf(); 可以从子类上获取父类
+					Object.getPrototypeOf(Ngm) === People
+
+					3.super 关键字
+					super关键字 既可以作为函数，也可以作为对象使用
+					作为函数super() 只能用在子类的构造函数中。
+					作为对象，在子类中调用父类的方法
+
+					4.类的prototype 和 __proto__ 属性
+					子类的 __proto__ 属性，表示构造函数的继承，总是 指向 父类
+					子类的prototype属性的__proto__属性, 表示方法的继承，指向父类的prototype属性
+
+					作为一个对象，子类的原型（__proto__属性）是父类；
+					作为一个构造函数，子类（B）的原型对象（prototype属性）是父类的原型对象（prototype属性）的实例
+
+					原因是
+
+					class A { }
+					class B extends A { }
+
+					// B 的实例继承 A 的实例
+					Object.setPrototypeOf(B.prototype, A.prototype);
+					// B 继承 A 的静态属性
+					Object.setPrototypeOf(B, A);
+
+					//setPrototypeOf的源码
+					Object.setPrototypeOf = function (obj, proto) {
+					obj.__proto__ = proto;
+					return obj;
+					}
+					即：B.prototype.__proto__ = A.prototype
+					B.__proto__ = A
+					实例的__proto__属性的__proto__属性，， 指向父类实例的.__proto__属性。
+					即：子类的原型的原型 是 父类的原型
+					可以通过 子类.__proto__.__proto__.func = ...  的方式，修改父类实例的行为，能够影响所有其他父类实例。
+
+					5.原生构造函数的继承
+					原生构造函数指的是 语言内置的构造函数。 包括：
+					Boolean()
+					Number()
+					String()
+					Array()
+					Date()
+					Function()
+					RegExp()
+					Error()
+					Object()
+
+					es6支持对原生函数的继承
+
+					6.Mixin 模式
+					指可以将多个对象合成一个对象。
+					数值都可以连在一起，为啥对象不可以呢～～
+
+					const a = {
+					a: 'a'
+					};
+					const b = {
+					b: 'b'
+					};
+					const c = {...a, ...b}; // {a: 'a', b: 'b'}
+
+
+					将多个类合成为 另一个类，并使用：
+
+					function mix(...mixins) {
+					class Mix {}
+
+					for (let mixin of mixins) {
+					copyProperties(Mix.prototype, mixin); // 拷贝实例属性
+					copyProperties(Mix.prototype, Reflect.getPrototypeOf(mixin)); // 拷贝原型属性
+					}
+
+					return Mix;
+					}
+
+					function copyProperties(target, source) {
+					for (let key of Reflect.ownKeys(source)) {
+					if ( key !== "constructor"
+					&& key !== "prototype"
+					&& key !== "name"
+					) {
+					let desc = Object.getOwnPropertyDescriptor(source, key);
+					Object.defineProperty(target, key, desc);
+					}
+					}
+					}
+					class DistributedEdit extends mix(Loggable, Serializable) {
+					// ...
+					}
+					mix in 这块待学习 ！！！
+
+
+
+
+
+				</div>
+				<footer>
+					--
+				</footer>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Footer -->
+	<div id="footer"> </div>
+
+	<!-- Scripts -->
+	<script src="../../assets/js/jquery.min.js"></script>
+	<script src="../../assets/js/jquery.scrolly.min.js"></script>
+	<script src="../../assets/js/jquery.scrollex.min.js"></script>
+	<script src="../../assets/js/browser.min.js"></script>
+	<script src="../../assets/js/breakpoints.min.js"></script>
+	<script src="../../assets/js/util.js"></script>
+	<script src="../../assets/js/main.js"></script>
+
+</body>
+
+</html>

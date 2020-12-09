@@ -64,18 +64,38 @@
 			<div class="container">
 
 				<header>
-					<h2 class="alt">第一个博客</h2>
-					<p>服务器到期，把博客转移到这， 待处理的问题： </p>
+					<h2 class="alt">gitLab服务器搭建</h2>
+					<p></p>
 				</header>
 				<div>
 
-					跨域 <br />
-					(1)最常用的是 后端添加 Allow-access-origin:'*' <br />
-					(2)jsonp 不能支持post请求 <br />
-					(3)Charles fiddler 等工具 <br />
-					(4)webpack-dev-server    配置：  proxyTable {} <br />
-					(5)nginx node服务器代理 <br />
-					http https <br />
+					安装Postfix以发送通知邮件，安装命令：sudo yum install postfix
+					将postfix服务设置成开机自启动，安装命令：sudo systemctl enable postfix
+					启动postfix，安装命令：sudo systemctl start postfix
+					启动报错，可以修改配置文件 vim /etc/postfix/main.cf ：
+					inet_protocols = ipv4
+					inet_interfaces = all
+					wget -V 查看wget是否安装
+					若wget未安装则进行安装，安装命令：yum -y install wget
+					添加gitlab镜像
+					wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.0.0-ce.0.el7.x86_64.rpm
+					安装gitlab 安装命令：rpm -i gitlab-ce-10.0.0-ce.0.el7.x86_64.rpm
+					运行命令报错：依赖检测失败：    policycoreutils-python 被 gitlab-ce-12.6.4-ce.0.el7.x86_64 需要运行命令： yum install
+					policycoreutils-python -y
+					修改gitlab配置文件指定服务器ip和自定义端口：
+					vim  /etc/gitlab/gitlab.rb
+					设置域名和端口如下：
+					external_url 'http://47.94.8.210:9500'
+					重置并启动GitLab执行：
+					gitlab-ctl reconfigure
+
+					gitlab-ctl restart
+
+
+
+					测试有效，部分操作可能很慢，并且没有等待提示，需要耐心等待
+
+					参考链接 https://blog.csdn.net/qq_34129814/article/details/100043914
 
 				</div>
 				<footer>
